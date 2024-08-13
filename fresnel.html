@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Fresnel</title>
+</head>
+<body>
+    <div class="container" style="margin:auto; width: 50%; text-align: center;">
+        <h1>Calculadora de formula de Fresnel</h1>
+        <form action="" id="formularioFresnel">
+            <div style="display: flex; justify-content: space-around;">
+                <div style="display: flex; flex-direction: column;">
+                    <label for="distancia">Distancia</label>
+                    <input type="number" name="distancia" placeholder="Ingrese la Distancia">
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <label for="frecuencia">Frecuencia</label>
+                    <input type="number" name="frecuencia" placeholder="Ingrese la Frecuencia">
+                </div>
+            </div>
+            <button style="margin-top: 12px; width: 20%;">Calcular</button>
+        </form>
+
+        <div style="height: 100px;">
+            <div id="divResultado" hidden>
+                <p>El radio de la Zona de Fresnel sera: <text id="resultado"></text> metros</p>
+            </div>
+
+            <div id="divError" hidden>
+                <p>Se han ingresado datos incorrectos</p>
+            </div>
+        </div>
+        
+        <div>
+            <h3>¿Qué es la Zona de Fresnel?</h3>
+            <p>La Zona de Fresnel se le llama al espacio elíptico libre que debe existir entre dos antenas emisoras para que pueda haber un correcto translado de ondas sin que exista obstrucción.</p>
+            <img src="imagenes/zona.png" alt="Zona de Fresnel">
+        </div>
+
+        <div style="height: 100px;">
+            <h3>¿Qué es la Fórmula de Fresnel?</h3>
+            <p>Es la ecuación utilizada para sacar el radio desde el centro de nuestra antena hasta el borde de la Zona de Fresnel. <br>Esta es su fórmula:</br></p>
+            <img src="imagenes/formula.png" alt="Fórmula de Fresnel">
+            <figcaption>F es el radio, D la distancia y f la frecuencia</figcaption>
+        </div>
+
+        <script>
+                let formulario = document.getElementById("formularioFresnel")
+                let divResultado = document.getElementById("divResultado")
+                let divError = document.getElementById('divError')
+                let pResultado = document.getElementById('resultado')
+                formulario.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    let distancia = e.target.distancia.value
+                    let distanciaValida = (distancia.length != 0) && (distancia > 0)
+                    let frecuencia = e.target.frecuencia.value
+                    let frecuenciaValida = (frecuencia.length != 0) && (frecuencia > 0)
+                    console.log(distancia)
+                    if (distanciaValida && frecuenciaValida){
+                        let resultado = (8.656 * Math.sqrt(distancia/frecuencia)).toFixed(2)
+                        pResultado.innerHTML = resultado
+                        divResultado.removeAttribute("hidden")
+                        divError.setAttribute("hidden", true);
+                    }
+                    else{
+                        divError.removeAttribute("hidden")
+                        divResultado.setAttribute("hidden", true)
+                    }
+                });
+        </script>
+    </div>
+</body>
+</html>
