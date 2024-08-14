@@ -7,7 +7,8 @@
 </head>
 <body>
     <div class="container" style="margin:auto; width: 50%; text-align: center;">
-        <h1>Calculadora de formula de Fresnel</h1>
+        <h1>Calculadora de fórmula de Fresnel</h1>
+        <p>Desarrollado por Pablo de Rivas</p>
         <form action="" id="formularioFresnel">
             <div style="display: flex; justify-content: space-around;">
                 <div style="display: flex; flex-direction: column;">
@@ -58,7 +59,7 @@
                     let frecuenciaValida = (frecuencia.length != 0) && (frecuencia > 0)
                     console.log(distancia)
                     if (distanciaValida && frecuenciaValida){
-                        let resultado = (8.656 * Math.sqrt(distancia/frecuencia)).toFixed(2)
+                        let resultado = (8.656 * Math.sqrt(distancia/frecuencia))
                         pResultado.innerHTML = resultado
                         divResultado.removeAttribute("hidden")
                         divError.setAttribute("hidden", true);
